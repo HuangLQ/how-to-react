@@ -1,8 +1,8 @@
 import { Map } from 'immutable'
 
-const initialState = Map({})
+const $$initialState = Map({})
 
-export default function entities(state = initialState, action) {
+export default function entities(state = $$initialState, action) {
   const { payload } = action
 
   if (payload && payload.response && payload.response.entities) {

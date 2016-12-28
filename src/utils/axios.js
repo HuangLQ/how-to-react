@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { SysError, MsgError } from './error'
-import {API_ROOT} from '../constants/API'
+import { API_ROOT } from '../constants/API'
 
 const instance = axios.create({
   baseURL: API_ROOT,

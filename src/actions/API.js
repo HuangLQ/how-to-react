@@ -1,23 +1,32 @@
 import { createActions } from 'redux-actions'
-import {
+import API from '../constants/actionTypes'
+
+const {
+  // login
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-
+  // logout
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
-} from '../constants/ActionTypes'
+} = API
 
-// auth
+
 export const {
+  // login
   loginRequest,
   loginSuccess,
   loginFaliure,
-} = createActions(LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE)
-
-export const {
+  // logout
   logoutRequest,
   logoutSuccess,
   logoutFaliure,
-} = createActions(LOGOUT_REQUEST, LOGOUT_SUCCESS, LOGOUT_FAILURE)
+} = createActions(
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT_REQUEST,
+  LOGOUT_SUCCESS,
+  LOGOUT_FAILURE,
+)
