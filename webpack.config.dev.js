@@ -18,8 +18,7 @@ export default {
     // must be first entry to properly set public path
     './src/webpack-public-path',
     'webpack-hot-middleware/client?reload=true',
-    'webpack/hot/only-dev-server',
-    'babel-polyfill',
+    'react-hot-loader/patch',
     './src/index',
   ],
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
@@ -41,7 +40,7 @@ export default {
     loaders: [
       { test: /\.js(x)?$/, exclude: /node_modules/, loader: 'babel' },
       { test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=application/vnd.ms-fontobject&name=[name].[ext]' },
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url?limit=10000&mimetype=application/font-woff&name=[name].[ext]' },
+      { test: /\.woff(2)?(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff&name=[name].[ext]' },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-sfnt&name=[name].[ext]' },
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml&name=[name].[ext]' },
       { test: /\.(jpe?g|png|gif)$/i, loader: 'url?limit=10000&name=[name].[ext]' },
