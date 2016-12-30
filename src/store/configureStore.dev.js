@@ -20,7 +20,7 @@ export default function configureStore(state = initialState) {
   const store = createStore(rootReducer, state, compose(
     applyMiddleware(immutableStateInvariant(), routerM, sagaM),
     // add support for Redux dev tools
-    window.devToolsExtension ? window.devToolsExtension() : f => f
+    window.devToolsExtension ? window.devToolsExtension() : f => f,
   ))
 
   sagaM.run(saga, store.getState)
