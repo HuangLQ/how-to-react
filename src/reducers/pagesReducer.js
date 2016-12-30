@@ -1,8 +1,8 @@
 import { Map } from 'immutable'
 
-const initialState = Map({})
+const $$initialState = Map({})
 
-export default function pages(state = initialState, action) {
+export default function pages(state = $$initialState, action) {
   const { type, payload } = action
   const [API, status] = type.split('_')
 

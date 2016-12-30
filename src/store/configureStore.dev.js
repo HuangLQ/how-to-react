@@ -14,9 +14,9 @@ import rootReducer from '../reducers'
 const routerM = routerMiddleware(browserHistory)
 const sagaM = createSagaMiddleware()
 
-const initialState = Map({})
+const $$initialState = Map({})
 
-export default function configureStore(state = initialState) {
+export default function configureStore(state = $$initialState) {
   const store = createStore(rootReducer, state, compose(
     applyMiddleware(immutableStateInvariant(), routerM, sagaM),
     // add support for Redux dev tools
