@@ -65,7 +65,7 @@ export default {
   ],
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel' },
+      { test: /\.js(x)?$/, exclude: /node_modules/, loader: 'babel' },
       { test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=application/vnd.ms-fontobject&name=[name].[ext]' },
       { test: /\.woff(2)?(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff&name=[name].[ext]' },
       { test: /\.ttf(\?v=\d+.\d+.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-sfnt&name=[name].[ext]' },
