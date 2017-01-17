@@ -11,7 +11,7 @@ const $$initialState = Map({
  * Reducer domain that handles LOCATION_CHANGE.
  **/
 export default createReducer($$initialState, {
-  [LOCATION_CHANGE]: (state, action) => state.merge({
+  [LOCATION_CHANGE]: ($$state, action) => $$state.merge({
     locationBeforeTransitions: action.payload,
   }),
 })

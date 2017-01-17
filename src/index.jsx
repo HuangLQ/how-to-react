@@ -19,8 +19,8 @@ const store = configureStore()
 
 // Create an enhanced history that syncs navigation events with the store
 const history = syncHistoryWithStore(browserHistory, store, {
-  selectLocationState(state) {
-    return state.get('routing').toJS()
+  selectLocationState($$state) {
+    return $$state.get('routing').toJS()
   },
 })
 
