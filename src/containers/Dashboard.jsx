@@ -27,7 +27,7 @@ const styles = {
   container: {
     minHeight: '100%',
     position: 'relative',
-  }
+  },
 }
 
 const propTypes = {
@@ -50,8 +50,8 @@ class Dashboard extends Component {
 
     if (width !== ui.width) {
       updateUI({
-        'width': width,
-        'asideOpenByHeader': false,
+        width: width,
+        asideOpenByHeader: false,
       })
     }
   }
@@ -78,4 +78,4 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = propTypes
 
-export default withWidth()(ui({ state: uiState})(immutableRenderDecorator(Dashboard)))
+export default withWidth()(ui({ state: uiState })(immutableRenderDecorator(Dashboard)))

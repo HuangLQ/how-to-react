@@ -1,5 +1,5 @@
 import { createActions } from 'redux-actions'
-import API from '../constants/actionTypes'
+import { API } from '../constants/actionTypes'
 
 const {
   // login

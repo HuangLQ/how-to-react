@@ -8,7 +8,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import { routerMiddleware } from 'react-router-redux'
 import immutableStateInvariant from 'redux-immutable-state-invariant'
 import createSagaMiddleware from 'redux-saga'
-import saga from '../saga'
+// import saga from '../saga'
 import rootReducer from '../reducers'
 
 const routerM = routerMiddleware(browserHistory)
@@ -23,7 +23,7 @@ export default function configureStore(state = $$initialState) {
     window.devToolsExtension ? window.devToolsExtension() : f => f,
   ))
 
-  sagaM.run(saga, store.getState)
+  // sagaM.run(saga, store.getState)
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

@@ -25,7 +25,7 @@ const styles = {
   logo: {
     height: '27px',
     verticalAlign: 'middle',
-  }
+  },
 }
 
 class Header extends Component {
@@ -60,8 +60,8 @@ class Header extends Component {
 
   handleTouchTapLeftIconButton() {
     this.props.updateUI({
-      'asideOpen': !this.props.ui.asideOpen,
-      'asideOpenByHeader': true,
+      asideOpen: !this.props.ui.asideOpen,
+      asideOpenByHeader: true,
     })
   }
 
@@ -73,7 +73,7 @@ class Header extends Component {
     return (
       <AppBar
         onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
-        title={<img style={styles.logo} src={logo} alt='material logo' />}
+        title={<img style={styles.logo} src={logo} alt="material logo" />}
         zDepth={1}
         style={styles.appBar}
         showMenuIconButton={ui.showMenuIconButton}
