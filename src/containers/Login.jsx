@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { immutableRenderDecorator } from 'react-immutable-render-mixin'
 
 import { Paper, RaisedButton, Avatar } from 'material-ui'
 import { reduxForm, Field } from 'redux-form/immutable'
 import { TextField } from 'redux-form-material-ui'
-import { immutableRenderDecorator } from 'react-immutable-render-mixin'
 import { API as APIActionCreators } from '../actions'
 import { withStyles, css } from '../withStyles'
 

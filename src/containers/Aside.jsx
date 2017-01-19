@@ -1,21 +1,23 @@
 import React, { Component, PropTypes } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { immutableRenderDecorator } from 'react-immutable-render-mixin'
 import { push } from 'react-router-redux'
 
-import Drawer from 'material-ui/Drawer'
+import { DropDownMenu, MenuItem, Avatar, Drawer } from 'material-ui'
 import { List, ListItem, makeSelectable } from 'material-ui/List'
-import DropDownMenu from 'material-ui/DropDownMenu'
-import MenuItem from 'material-ui/MenuItem'
-import Avatar from 'material-ui/Avatar'
 import { GridList, GridTile } from 'material-ui/GridList'
 
 import { css, withStyles } from '../withStyles'
-import { mapActions } from '../utils'
 
 import userBG from '../img/user-bg.jpg'
 import avatar from '../img/avatar.jpg'
 
 const SelectableList = makeSelectable(List)
+
+const mapDispatchToProps = dispatch => ({
+  actionsCreators: bindActionCreators({ push }, dispatch),
+})
 
 const propTypes = {
   location: PropTypes.object.isRequired,
@@ -23,24 +25,40 @@ const propTypes = {
   theme: PropTypes.object.isRequired,
 }
 
+@connect(null, mapDispatchToProps)
+@withStyles(({ zIndex }) => ({
+  container: {
+    zIndex: zIndex.drawer - 100,
+    overflow: 'hidden',
+  },
+  user: {
+    backgroundSize: 'cover',
+    padding: '10px 15px',
+    background: `url(${userBG})`,
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    color: '#fff',
+    fontSize: 13,
+  },
+  gridList: {
+    width: '100%',
+  },
+}))
+@immutableRenderDecorator
 class Aside extends Component {
   render() {
-    const {
-      location,
-      styles,
-      theme,
-    } = this.props
+    const { location, styles, theme } = this.props
 
     const {
       ActionCardGiftcard,
       ActionAccountBalanceWallet,
       ActionAssignment,
-      ActionRecordVoiceOver,
       ActionPermContactCalendar,
     } = theme.svgIcon
 
     return (
-      <Drawer {...css(styles.root)} open containerClassName={css(styles.container).className}>
+      <Drawer open containerClassName={css(styles.container).className}>
         <div {...css(styles.user)}>
           <GridList cellHeight={75} cols={3} {...css(styles.gridList)}>
             <GridTile cols={1} style={{ textAlign: 'right', top: 10 }}>
@@ -58,11 +76,10 @@ class Aside extends Component {
           </GridList>
         </div>
         <SelectableList value={location.pathname} onChange={this.onChangeList}>
-          <ListItem primaryText="商品管理" value="/dashboard" leftIcon={<ActionCardGiftcard />} />
-          <ListItem primaryText="分类管理" value="/" leftIcon={<ActionAccountBalanceWallet />} />
-          <ListItem primaryText="订单管理" value="/" leftIcon={<ActionAssignment />} />
-          <ListItem primaryText="客户消息" value="/" leftIcon={<ActionRecordVoiceOver />} />
-          <ListItem primaryText="账号管理" value="/" leftIcon={<ActionPermContactCalendar />} />
+          <ListItem primaryText="商品管理" value="/goods" leftIcon={<ActionCardGiftcard />} />
+          <ListItem primaryText="分类管理" value="/classify" leftIcon={<ActionAccountBalanceWallet />} />
+          <ListItem primaryText="订单管理" value="/order" leftIcon={<ActionAssignment />} />
+          <ListItem primaryText="账号管理" value="/account" leftIcon={<ActionPermContactCalendar />} />
         </SelectableList>
       </Drawer>
     )
@@ -71,28 +88,4 @@ class Aside extends Component {
 
 Aside.propTypes = propTypes
 
-export default connect(null, mapActions(push))(withStyles(({ spacing, zIndex }) => ({
-  root: {
-    zIndex: zIndex.appBar,
-  },
-  container: {
-    zIndex: zIndex.drawer - 100,
-    top: spacing.desktopKeylineIncrement,
-    overflow: 'hidden',
-  },
-  user: {
-    backgroundSize: 'cover',
-    padding: '10px 15px',
-    background: `url(${userBG})`,
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    color: '#fff',
-    fontSize: 13,
-  },
-  gridList: {
-    width: '100%',
-  },
-}), {
-  flushBefore: true,
-})(Aside))
+export default Aside

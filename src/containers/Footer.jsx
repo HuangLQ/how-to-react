@@ -1,65 +1,48 @@
 import React, { Component, PropTypes } from 'react'
-import ui from 'redux-ui'
 import { immutableRenderDecorator } from 'react-immutable-render-mixin'
-import { connect } from 'react-redux'
 
-import { SMALL } from 'material-ui/utils/withWidth'
-import IconButton from 'material-ui/IconButton'
-import { cyan500, grey50 } from 'material-ui/styles/colors'
+import { css, withStyles } from '../withStyles'
 
 const propTypes = {
-  width: PropTypes.number.isRequired,
+  styles: PropTypes.object.isRequired,
 }
 
-const styles = {
+@withStyles(({ colors }) => ({
   root: {
     position: 'absolute',
     bottom: 0,
     right: 0,
     left: 0,
-    clear: 'both',
-    backgroundColor: cyan500,
+    backgroundColor: colors.cyan500,
     height: '50px',
     lineHeight: '50px',
     padding: '0 15px',
-    textAlign: 'left',
-    fontWeight: 300,
+    marginLeft: 256,
   },
   content: {
     padding: '0 15px',
-    maxWidth: '100% !important',
+    maxWidth: '100%',
   },
   copyright: {
-    color: grey50,
+    color: colors.grey50,
   },
-}
-
+}))
+@immutableRenderDecorator
+// eslint-disable-next-line
 class Footer extends Component {
-  constructor(props, context) {
-    super(props, context)
-  }
-
   render() {
-    const {
-      ui,
-    } = this.props
-
-    if (ui.width === SMALL) {
-      styles.root = Object.assign({}, styles.root, { marginLeft: 0 })
-    } else {
-      styles.root = Object.assign({}, styles.root, { marginLeft: 256 })
-    }
+    const { styles } = this.props
 
     return (
-      <div style={styles.root}>
-        <div style={styles.content}>
-          <span style={styles.copyright}>Copyright © 2015 <a href="http://themeforest.net/user/geekslabs/portfolio?ref=geekslabs" target="_blank">GeeksLabs</a> All rights reserved.</span>
+      <div {...css(styles.root)}>
+        <div {...css(styles.content)}>
+          <span {...css(styles.copyright)}>Copyright © 2015 <a href="http://themeforest.net/user/geekslabs/portfolio?ref=geekslabs" target="_blank">GeeksLabs</a> All rights reserved.</span>
         </div>
       </div>
     )
   }
 }
 
-Footer.propTyps = propTypes
+Footer.propTypes = propTypes
 
-export default ui()(immutableRenderDecorator(Footer))
+export default Footer

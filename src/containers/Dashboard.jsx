@@ -1,76 +1,52 @@
 import React, { Component, PropTypes } from 'react'
 import { immutableRenderDecorator } from 'react-immutable-render-mixin'
-import withWidth, { SMALL } from 'material-ui/utils/withWidth'
+
 import ui from 'redux-ui'
 import Header from './Header'
 import Aside from './Aside'
 import Footer from './Footer'
+import { withStyles, css } from '../withStyles'
 
-import spacing from 'material-ui/styles/spacing'
-
-const uiState = {
-  asideOpen: true,
-  asideOpenByHeader: false,
-  showMenuIconButton: false,
-  width: SMALL,
+const propTypes = {
+  children: PropTypes.element.isRequired,
+  location: PropTypes.object.isRequired,
+  styles: PropTypes.object.isRequired,
 }
 
-const styles = {
+@ui({
+  state: {
+    asideOpen: true,
+  },
+})
+@withStyles(({ spacing }) => ({
   root: {
-    paddingTop: spacing.desktopKeylineIncrement,
-    paddingBottom: 50,
-    paddingLeft: 256,
-  },
-  content: {
-    margin: spacing.desktopGutter,
-  },
-  container: {
     minHeight: '100%',
     position: 'relative',
   },
-}
-
-const propTypes = {
-  children: PropTypes.element,
-  width: PropTypes.number.isRequired,
-  location: PropTypes.object.isRequired,
-}
-
+  container: {
+    paddingTop: spacing.desktopKeylineIncrement,
+    paddingLeft: 256,
+  },
+  content: {
+    padding: spacing.desktopGutter,
+    paddingBottom: spacing.desktopGutter + 50,
+  },
+}))
+@immutableRenderDecorator
+// eslint-disable-next-line
 class Dashboard extends Component {
-  constructor(props, context) {
-    super(props, context)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {
-      width,
-      updateUI,
-      ui,
-    } = nextProps
-
-    if (width !== ui.width) {
-      updateUI({
-        width: width,
-        asideOpenByHeader: false,
-      })
-    }
-  }
-
   render() {
-    const {
-      children,
-    } = this.props
-
+    const { children, styles, location } = this.props
     return (
-      <div style={styles.container}>
+      <div {...css(styles.root)}>
         <Header />
-        <div style={styles.root}>
-          <div style={styles.content}>
+        <Aside location={location} />
+        <div {...css(styles.container)}>
+          <div {...css(styles.content)}>
             {children}
           </div>
+          <Footer />
         </div>
-        <Aside location={location} />
-        <Footer />
       </div>
     )
   }
@@ -78,4 +54,4 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = propTypes
 
-export default withWidth()(ui({ state: uiState })(immutableRenderDecorator(Dashboard)))
+export default Dashboard

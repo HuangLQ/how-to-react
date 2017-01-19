@@ -1,82 +1,38 @@
 import React, { Component, PropTypes } from 'react'
 import { immutableRenderDecorator } from 'react-immutable-render-mixin'
-import ui from 'redux-ui'
 
-import { SMALL } from 'material-ui/utils/withWidth'
 import AppBar from 'material-ui/AppBar'
-import IconButton from 'material-ui/IconButton'
-import { zIndex } from 'material-ui/styles'
+
+import { css, withStyles } from '../withStyles'
 
 const logo = require('../img/materialize-logo.png')
 
 const propTypes = {
-  uiKey: PropTypes.string.isRequired,
-  ui: PropTypes.object.isRequired,
-  updateUI: PropTypes.func.isRequired,
-  resetUI: PropTypes.func.isRequired,
+  styles: PropTypes.object.isRequired,
 }
 
-const styles = {
+@withStyles(({ zIndex }) => ({
   appBar: {
     position: 'fixed',
     zIndex: zIndex.appBar + 1,
     top: 0,
+    marginLeft: 256,
   },
   logo: {
     height: '27px',
     verticalAlign: 'middle',
   },
-}
-
+}))
+@immutableRenderDecorator
+// eslint-disable-next-line
 class Header extends Component {
-  constructor(props, content) {
-    super(props, content)
-    this.handleTouchTapLeftIconButton = this.handleTouchTapLeftIconButton.bind(this)
-  }
-
-  componentWillMount() {
-    const {
-      updateUI,
-      ui,
-    } = this.props
-
-    if (ui.width === SMALL) {
-      updateUI('showMenuIconButton', true)
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const {
-      updateUI,
-      ui,
-    } = nextProps
-
-    if (ui.width === SMALL) {
-      updateUI('showMenuIconButton', true)
-    } else {
-      updateUI('showMenuIconButton', false)
-    }
-  }
-
-  handleTouchTapLeftIconButton() {
-    this.props.updateUI({
-      asideOpen: !this.props.ui.asideOpen,
-      asideOpenByHeader: true,
-    })
-  }
-
   render() {
-    const {
-      ui,
-    } = this.props
-
+    const { styles } = this.props
     return (
       <AppBar
-        onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
-        title={<img style={styles.logo} src={logo} alt="material logo" />}
+        title={<img {...css(styles.logo)} src={logo} alt="material logo" />}
         zDepth={1}
-        style={styles.appBar}
-        showMenuIconButton={ui.showMenuIconButton}
+        {...css(styles.appBar)}
       />
     )
   }
@@ -84,4 +40,4 @@ class Header extends Component {
 
 Header.propTypes = propTypes
 
-export default ui()(immutableRenderDecorator(Header))
+export default Header
