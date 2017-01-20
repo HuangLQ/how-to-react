@@ -1,12 +1,13 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
+import store from 'store2'
 
 import App from './containers/App'
 import Login from './containers/Login'
 import Dashboard from './containers/Dashboard'
 
 const isAuth = () => (
-  !!localStorage.token
+  !!store('accessToken')
 )
 
 const requireAuth = (nextState, replace) => {
