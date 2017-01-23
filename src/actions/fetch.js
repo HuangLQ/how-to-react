@@ -1,5 +1,5 @@
 import { createActions } from 'redux-actions'
-import { API } from '../constants/actionTypes'
+import { fetch } from '../constants/actionTypes'
 
 const {
   // login
@@ -10,7 +10,7 @@ const {
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE,
-} = API
+} = fetch
 
 
 export const {
