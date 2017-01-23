@@ -7,6 +7,10 @@ const propTypes = {
   styles: PropTypes.object.isRequired,
 }
 
+const defaultProps = {
+  styles: {},
+}
+
 @withStyles(({ colors }) => ({
   root: {
     position: 'absolute',
@@ -15,7 +19,7 @@ const propTypes = {
     left: 0,
     backgroundColor: colors.grey900,
     height: 50,
-    lineHeight: 50,
+    lineHeight: '50px',
     padding: '0 15px',
     marginLeft: 256,
   },
@@ -44,5 +48,6 @@ class Footer extends Component {
 }
 
 Footer.propTypes = propTypes
+Footer.defaultProps = defaultProps
 
 export default Footer

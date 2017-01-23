@@ -8,9 +8,14 @@ import Footer from './Footer'
 import { withStyles, css } from '../withStyles'
 
 const propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element,
   location: PropTypes.object.isRequired,
-  styles: PropTypes.object.isRequired,
+  styles: PropTypes.object,
+}
+
+const defaultProps = {
+  children: PropTypes.node,
+  styles: {},
 }
 
 @ui({
@@ -53,5 +58,6 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = propTypes
+Dashboard.defaultProps = defaultProps
 
 export default Dashboard

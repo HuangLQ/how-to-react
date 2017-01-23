@@ -8,7 +8,11 @@ import { css, withStyles } from '../withStyles'
 const logo = require('../img/materialize-logo.png')
 
 const propTypes = {
-  styles: PropTypes.object.isRequired,
+  styles: PropTypes.object,
+}
+
+const defaultProps = {
+  styles: {},
 }
 
 @withStyles(({ zIndex }) => ({
@@ -39,5 +43,6 @@ class Header extends Component {
 }
 
 Header.propTypes = propTypes
+Header.defaultProps = defaultProps
 
 export default Header

@@ -21,8 +21,13 @@ const mapDispatchToProps = dispatch => ({
 
 const propTypes = {
   location: PropTypes.object.isRequired,
-  styles: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
+  styles: PropTypes.object,
+  theme: PropTypes.object,
+}
+
+const defaultProps = {
+  styles: {},
+  theme: {},
 }
 
 @connect(null, mapDispatchToProps)
@@ -87,5 +92,6 @@ class Aside extends Component {
 }
 
 Aside.propTypes = propTypes
+Aside.defaultProps = defaultProps
 
 export default Aside
