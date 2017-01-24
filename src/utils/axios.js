@@ -19,7 +19,7 @@ instance.interceptors.request.use((config) => {
   const reqConfig = Object.assign({}, config)
   const accessToken = store('accessToken') || null
   const language = store('language') || 'zh'
-  reqConfig.headers.Authorization = `token ${accessToken}`
+  reqConfig.headers.Authorization = accessToken
   reqConfig.headers['Accept-Language'] = ACCEPT_LANGUAGE[language]
 
   return reqConfig
